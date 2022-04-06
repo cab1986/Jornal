@@ -358,7 +358,9 @@ namespace Jornal
 
         private void пользавателиToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            //Hide();
+            Form6 about = new Form6();
+            about.ShowDialog();
         }
     }
 }

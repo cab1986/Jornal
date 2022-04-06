@@ -104,21 +104,21 @@
             // пользавателиToolStripMenuItem
             // 
             this.пользавателиToolStripMenuItem.Name = "пользавателиToolStripMenuItem";
-            this.пользавателиToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.пользавателиToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.пользавателиToolStripMenuItem.Text = "Пользаватели";
             this.пользавателиToolStripMenuItem.Click += new System.EventHandler(this.пользавателиToolStripMenuItem_Click);
             // 
             // предметыToolStripMenuItem
             // 
             this.предметыToolStripMenuItem.Name = "предметыToolStripMenuItem";
-            this.предметыToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.предметыToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.предметыToolStripMenuItem.Text = "Предметы";
             this.предметыToolStripMenuItem.Click += new System.EventHandler(this.предметыToolStripMenuItem_Click);
             // 
             // учебаToolStripMenuItem
             // 
             this.учебаToolStripMenuItem.Name = "учебаToolStripMenuItem";
-            this.учебаToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.учебаToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.учебаToolStripMenuItem.Text = "Учеба";
             this.учебаToolStripMenuItem.Click += new System.EventHandler(this.учебаToolStripMenuItem_Click);
             // 
@@ -154,7 +154,7 @@
             this.Controls.Add(this.comboBox1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form2";
-            this.Text = "Form2";
+            this.Text = "Журнал";
             this.Activated += new System.EventHandler(this.Form2_Activated);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form2_FormClosed);
             this.Load += new System.EventHandler(this.Form2_Load);

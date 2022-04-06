@@ -20,7 +20,7 @@ namespace Jornal
         {
             InitializeComponent();
         }
-        static string GetMd5Hash(string input)
+        public static string GetMd5Hash(string input)
         {
             MD5 md5Hasher = MD5.Create();
 
