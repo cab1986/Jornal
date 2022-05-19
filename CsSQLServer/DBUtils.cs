@@ -15,6 +15,7 @@ namespace Tutorial.SqlConn
             string database = "Jornal_DB";
             string username = "sa";
             string password = "1234";
+
             return DBSQLServerUtils.GetDBConnection(datasource, database, username, password);
         }
     }

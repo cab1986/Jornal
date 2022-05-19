@@ -251,6 +251,10 @@ namespace Jornal
                 comboBox2.Visible = false;
                 button1.Visible = false;
             }
+            if (User.Prava == 1)
+            {
+                button1.Visible = false;
+            }
             Refreshh(this);
             
         }

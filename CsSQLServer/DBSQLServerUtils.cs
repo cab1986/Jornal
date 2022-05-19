@@ -18,6 +18,7 @@ namespace Tutorial.SqlConn
             string connString = @"Data Source=" + datasource + ";Initial Catalog="
                         + database + ";Persist Security Info=True;User ID=" + username + ";Password=" + password;
             SqlConnection conn = new SqlConnection(connString);
+            //SqlConnection conn = new SqlConnection("Data Source=Data\\JornalDB.mdf;Version=3;New=False;Compress=True;");
             return conn;
         }
     }

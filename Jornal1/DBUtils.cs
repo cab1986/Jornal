@@ -11,10 +11,10 @@ namespace Tutorial.SqlConn
     {
         public static SqlConnection GetDBConnection()
         {
-            string datasource = @"DESKTOP-KJ58DRQ\SQLEXPRESS";
+            string datasource = @"SPIRIDONOVAV\SQLEXPRESS";
             string database = "Jornal_DB";
             string username = "sa";
-            string password = "1234";
+            string password = "Pass123word";
             return DBSQLServerUtils.GetDBConnection(datasource, database, username, password);
         }
     }

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form2));
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
@@ -38,8 +39,13 @@
             this.учебаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.comboBox3 = new System.Windows.Forms.ComboBox();
             this.button1 = new System.Windows.Forms.Button();
+            this.report1 = new FastReport.Report();
+            this.jornal_DBDataSet1 = new Jornal.Jornal_DBDataSet();
+            this.elementHost1 = new System.Windows.Forms.Integration.ElementHost();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.menuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.report1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.jornal_DBDataSet1)).BeginInit();
             this.SuspendLayout();
             // 
             // comboBox1
@@ -98,27 +104,27 @@
             this.предметыToolStripMenuItem,
             this.учебаToolStripMenuItem});
             this.менюToolStripMenuItem.Name = "менюToolStripMenuItem";
-            this.менюToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
+            this.менюToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
             this.менюToolStripMenuItem.Text = "Меню";
             // 
             // пользавателиToolStripMenuItem
             // 
             this.пользавателиToolStripMenuItem.Name = "пользавателиToolStripMenuItem";
-            this.пользавателиToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.пользавателиToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
             this.пользавателиToolStripMenuItem.Text = "Пользаватели";
             this.пользавателиToolStripMenuItem.Click += new System.EventHandler(this.пользавателиToolStripMenuItem_Click);
             // 
             // предметыToolStripMenuItem
             // 
             this.предметыToolStripMenuItem.Name = "предметыToolStripMenuItem";
-            this.предметыToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.предметыToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
             this.предметыToolStripMenuItem.Text = "Предметы";
             this.предметыToolStripMenuItem.Click += new System.EventHandler(this.предметыToolStripMenuItem_Click);
             // 
             // учебаToolStripMenuItem
             // 
             this.учебаToolStripMenuItem.Name = "учебаToolStripMenuItem";
-            this.учебаToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.учебаToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
             this.учебаToolStripMenuItem.Text = "Учеба";
             this.учебаToolStripMenuItem.Click += new System.EventHandler(this.учебаToolStripMenuItem_Click);
             // 
@@ -141,6 +147,27 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // report1
+            // 
+            this.report1.NeedRefresh = false;
+            this.report1.ReportResourceString = resources.GetString("report1.ReportResourceString");
+            this.report1.Tag = null;
+            this.report1.RegisterData(this.jornal_DBDataSet1, "jornal_DBDataSet1");
+            // 
+            // jornal_DBDataSet1
+            // 
+            this.jornal_DBDataSet1.DataSetName = "Jornal_DBDataSet";
+            this.jornal_DBDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // elementHost1
+            // 
+            this.elementHost1.Location = new System.Drawing.Point(0, 0);
+            this.elementHost1.Name = "elementHost1";
+            this.elementHost1.Size = new System.Drawing.Size(200, 100);
+            this.elementHost1.TabIndex = 0;
+            this.elementHost1.Text = "elementHost1";
+            this.elementHost1.Child = null;
+            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -161,6 +188,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.report1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.jornal_DBDataSet1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -178,5 +207,8 @@
         private System.Windows.Forms.ComboBox comboBox3;
         private System.Windows.Forms.Button button1;
         public System.Windows.Forms.ComboBox comboBox2;
+        private FastReport.Report report1;
+        private Jornal_DBDataSet jornal_DBDataSet1;
+        private System.Windows.Forms.Integration.ElementHost elementHost1;
     }
 }
