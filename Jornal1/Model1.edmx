@@ -1,0 +1,318 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище Jornal_DBModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="lesson">
+          <Key>
+            <PropertyRef Name="id_les" />
+          </Key>
+          <Property Name="id_les" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_tch" Type="int" Nullable="false" />
+          <Property Name="id_st" Type="int" Nullable="false" />
+          <Property Name="id_pred" Type="int" Nullable="false" />
+          <Property Name="date_les" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="mark">
+          <Key>
+            <PropertyRef Name="id_m" />
+          </Key>
+          <Property Name="id_m" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_st" Type="int" Nullable="false" />
+          <Property Name="id_pred" Type="int" Nullable="false" />
+          <Property Name="mark" Type="int" Nullable="false" />
+          <Property Name="date_m" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="prava">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="predmet">
+          <Key>
+            <PropertyRef Name="id_predmet" />
+          </Key>
+          <Property Name="id_predmet" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="predmet" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="t_st_pred">
+          <Key>
+            <PropertyRef Name="id_tsp" />
+          </Key>
+          <Property Name="id_tsp" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_pred" Type="int" Nullable="false" />
+          <Property Name="id_tch" Type="int" Nullable="false" />
+          <Property Name="id_st" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="teach_predmet">
+          <Key>
+            <PropertyRef Name="id_t_pr" />
+          </Key>
+          <Property Name="id_t_pr" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_teach" Type="int" Nullable="false" />
+          <Property Name="id_predmet" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fio_user" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="log_in" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="pass" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="prava" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_prava">
+          <End Role="prava" Type="Self.prava" Multiplicity="1" />
+          <End Role="Users" Type="Self.Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="prava">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="prava" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_prava_prava">
+          <End Role="prava" Type="Self.prava" Multiplicity="1" />
+          <End Role="prava1" Type="Self.prava" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="prava">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="prava1">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище Jornal_DBModelContainer">
+          <EntitySet Name="lesson" EntityType="Self.lesson" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="mark" EntityType="Self.mark" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="prava" EntityType="Self.prava" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="predmet" EntityType="Self.predmet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="t_st_pred" EntityType="Self.t_st_pred" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="teach_predmet" EntityType="Self.teach_predmet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_prava" Association="Self.FK_prava">
+            <End Role="prava" EntitySet="prava" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_prava_prava" Association="Self.FK_prava_prava">
+            <End Role="prava" EntitySet="prava" />
+            <End Role="prava1" EntitySet="prava" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Jornal_DBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="lesson">
+          <Key>
+            <PropertyRef Name="id_les" />
+          </Key>
+          <Property Name="id_les" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_tch" Type="Int32" Nullable="false" />
+          <Property Name="id_st" Type="Int32" Nullable="false" />
+          <Property Name="id_pred" Type="Int32" Nullable="false" />
+          <Property Name="date_les" Type="DateTime" Nullable="false" Precision="0" />
+        </EntityType>
+        <EntityType Name="mark">
+          <Key>
+            <PropertyRef Name="id_m" />
+          </Key>
+          <Property Name="id_m" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_st" Type="Int32" Nullable="false" />
+          <Property Name="id_pred" Type="Int32" Nullable="false" />
+          <Property Name="mark1" Type="Int32" Nullable="false" />
+          <Property Name="date_m" Type="DateTime" Nullable="false" Precision="0" />
+        </EntityType>
+        <EntityType Name="prava">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_prava" FromRole="prava" ToRole="Users" />
+          <NavigationProperty Name="prava1" Relationship="Self.FK_prava_prava" FromRole="prava" ToRole="prava1" />
+          <NavigationProperty Name="prava2" Relationship="Self.FK_prava_prava" FromRole="prava1" ToRole="prava" />
+        </EntityType>
+        <EntityType Name="predmet">
+          <Key>
+            <PropertyRef Name="id_predmet" />
+          </Key>
+          <Property Name="id_predmet" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="predmet1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="t_st_pred">
+          <Key>
+            <PropertyRef Name="id_tsp" />
+          </Key>
+          <Property Name="id_tsp" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_pred" Type="Int32" Nullable="false" />
+          <Property Name="id_tch" Type="Int32" Nullable="false" />
+          <Property Name="id_st" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="teach_predmet">
+          <Key>
+            <PropertyRef Name="id_t_pr" />
+          </Key>
+          <Property Name="id_t_pr" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_teach" Type="Int32" Nullable="false" />
+          <Property Name="id_predmet" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fio_user" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="log_in" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="pass" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="prava" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="prava1" Relationship="Self.FK_prava" FromRole="Users" ToRole="prava" />
+        </EntityType>
+        <Association Name="FK_prava">
+          <End Role="prava" Type="Self.prava" Multiplicity="1" />
+          <End Role="Users" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="prava">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="prava" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_prava_prava">
+          <End Role="prava" Type="Self.prava" Multiplicity="1" />
+          <End Role="prava1" Type="Self.prava" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="prava">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="prava1">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Jornal_DBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="lessons" EntityType="Self.lesson" />
+          <EntitySet Name="marks" EntityType="Self.mark" />
+          <EntitySet Name="pravas" EntityType="Self.prava" />
+          <EntitySet Name="predmets" EntityType="Self.predmet" />
+          <EntitySet Name="t_st_pred" EntityType="Self.t_st_pred" />
+          <EntitySet Name="teach_predmet" EntityType="Self.teach_predmet" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <AssociationSet Name="FK_prava" Association="Self.FK_prava">
+            <End Role="prava" EntitySet="pravas" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_prava_prava" Association="Self.FK_prava_prava">
+            <End Role="prava" EntitySet="pravas" />
+            <End Role="prava1" EntitySet="pravas" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище Jornal_DBModelContainer" CdmEntityContainer="Jornal_DBEntities">
+          <EntitySetMapping Name="lessons">
+            <EntityTypeMapping TypeName="Jornal_DBModel.lesson">
+              <MappingFragment StoreEntitySet="lesson">
+                <ScalarProperty Name="id_les" ColumnName="id_les" />
+                <ScalarProperty Name="id_tch" ColumnName="id_tch" />
+                <ScalarProperty Name="id_st" ColumnName="id_st" />
+                <ScalarProperty Name="id_pred" ColumnName="id_pred" />
+                <ScalarProperty Name="date_les" ColumnName="date_les" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="marks">
+            <EntityTypeMapping TypeName="Jornal_DBModel.mark">
+              <MappingFragment StoreEntitySet="mark">
+                <ScalarProperty Name="id_m" ColumnName="id_m" />
+                <ScalarProperty Name="id_st" ColumnName="id_st" />
+                <ScalarProperty Name="id_pred" ColumnName="id_pred" />
+                <ScalarProperty Name="mark1" ColumnName="mark" />
+                <ScalarProperty Name="date_m" ColumnName="date_m" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="pravas">
+            <EntityTypeMapping TypeName="Jornal_DBModel.prava">
+              <MappingFragment StoreEntitySet="prava">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="predmets">
+            <EntityTypeMapping TypeName="Jornal_DBModel.predmet">
+              <MappingFragment StoreEntitySet="predmet">
+                <ScalarProperty Name="id_predmet" ColumnName="id_predmet" />
+                <ScalarProperty Name="predmet1" ColumnName="predmet" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="t_st_pred">
+            <EntityTypeMapping TypeName="Jornal_DBModel.t_st_pred">
+              <MappingFragment StoreEntitySet="t_st_pred">
+                <ScalarProperty Name="id_tsp" ColumnName="id_tsp" />
+                <ScalarProperty Name="id_pred" ColumnName="id_pred" />
+                <ScalarProperty Name="id_tch" ColumnName="id_tch" />
+                <ScalarProperty Name="id_st" ColumnName="id_st" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="teach_predmet">
+            <EntityTypeMapping TypeName="Jornal_DBModel.teach_predmet">
+              <MappingFragment StoreEntitySet="teach_predmet">
+                <ScalarProperty Name="id_t_pr" ColumnName="id_t_pr" />
+                <ScalarProperty Name="id_teach" ColumnName="id_teach" />
+                <ScalarProperty Name="id_predmet" ColumnName="id_predmet" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="Jornal_DBModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="fio_user" ColumnName="fio_user" />
+                <ScalarProperty Name="log_in" ColumnName="log_in" />
+                <ScalarProperty Name="pass" ColumnName="pass" />
+                <ScalarProperty Name="prava" ColumnName="prava" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

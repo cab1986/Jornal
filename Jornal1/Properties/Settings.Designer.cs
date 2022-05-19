@@ -22,16 +22,5 @@ namespace Jornal.Properties {
                 return defaultInstance;
             }
         }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=SPIRIDONOVAV\\SQLEXPRESS;Initial Catalog=Jornal_DB;Integrated Security" +
-            "=True")]
-        public string Jornal_DBConnectionString {
-            get {
-                return ((string)(this["Jornal_DBConnectionString"]));
-            }
-        }
     }
 }

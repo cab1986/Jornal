@@ -11,6 +11,11 @@ using Tutorial.SqlConn;
 using System.Data.SqlClient;
 using System.Data.Common;
 using System.Globalization;
+using FastReport;
+using FastReport.Utils;
+using FastReport.Data;
+using System.Windows.Forms.Integration;
+using Jornal;
 
 namespace Jornal
 {
@@ -26,21 +31,21 @@ namespace Jornal
             int dayinmnt = DateTime.DaysInMonth(2022, mnth + 1);
             DateTime date = DateTime.Now;
             int predId=0;
-            if (User.Prava != 3)
+            if (User1.Prava != 3)
             {
                 DataRow selectedDataRow = ((DataRowView)form.comboBox2.SelectedItem).Row;
                 predId = Convert.ToInt32(selectedDataRow["Id_pr"]);
             }
             int idt;string txtch; int idst; string txst;
-            if (User.Prava == 1)
+            if (User1.Prava == 1)
             {
                 DataRow selectedDataRow1 = ((DataRowView)form.comboBox3.SelectedItem).Row;
                 idt = Convert.ToInt32(selectedDataRow1["Id"]);
                 txtch = " AND id_tch=";
                 idst = predId; txst = " AND id_pred=";
             }
-            else if (User.Prava == 2) { idt = Convert.ToInt32(User.Value); txtch = " AND id_tch="; idst = predId; txst = " AND id_pred="; }
-            else { idt = 1; txtch = " AND 1="; idst = User.Value; txst = " AND id_st="; }
+            else if (User1.Prava == 2) { idt = Convert.ToInt32(User1.Value); txtch = " AND id_tch="; idst = predId; txst = " AND id_pred="; }
+            else { idt = 1; txtch = " AND 1="; idst = User1.Value; txst = " AND id_st="; }
             SqlConnection conn = DBUtils.GetDBConnection();
             conn.Open();
             SqlCommand cmd = new SqlCommand();
@@ -107,15 +112,15 @@ namespace Jornal
             conn2.Open();
             SqlCommand cmd2 = new SqlCommand();
             cmd2.Connection = conn2;
-            if(User.Prava != 3)
+            if(User1.Prava != 3)
             {
-                cmd2.CommandText = "SELECT t_st_pred.id_st, users.fio_user FROM t_st_pred JOIN users ON t_st_pred.id_st=users.id_user WHERE t_st_pred.id_pred=@id_pred AND t_st_pred.id_tch=@id_tch ORDER BY users.fio_user";
+                cmd2.CommandText = "SELECT t_st_pred.id_st, users.fio_user FROM t_st_pred JOIN users ON t_st_pred.id_st=users.Id WHERE t_st_pred.id_pred=@id_pred AND t_st_pred.id_tch=@id_tch ORDER BY users.fio_user";
                 cmd2.Parameters.Add("@id_pred", SqlDbType.Int).Value = predId;
                 cmd2.Parameters.Add("@id_tch", SqlDbType.Int).Value = idt;
             }
             else
             {
-                cmd2.CommandText = "SELECT t_st_pred.id_pred, predmet.predmet FROM t_st_pred JOIN predmet ON t_st_pred.id_pred=predmet.id_predmet WHERE t_st_pred.id_st=" + User.Value + " ORDER BY predmet.predmet";
+                cmd2.CommandText = "SELECT t_st_pred.id_pred, predmet.predmet FROM t_st_pred JOIN predmet ON t_st_pred.id_pred=predmet.id_predmet WHERE t_st_pred.id_st=" + User1.Value + " ORDER BY predmet.predmet";
 
             }
             DbDataReader reader2 = cmd2.ExecuteReader();
@@ -124,7 +129,7 @@ namespace Jornal
                 while (reader2.Read())
                 {
                     string fio_st; int id_stud;
-                    if (User.Prava != 3)
+                    if (User1.Prava != 3)
                     {
                         int fio = reader2.GetOrdinal("fio_user");
                         int id_std2 = reader2.GetOrdinal("id_st");
@@ -144,7 +149,7 @@ namespace Jornal
                     for (int i = 0; i < dayinmnt; i++)
                     {
                         DataRow[] selectedls; DataRow[] selectedmr;
-                        if (User.Prava != 3)
+                        if (User1.Prava != 3)
                         {
                             selectedls = dataTable.Select($"id_st = '{id_stud}' AND date_les = '{i + 1}'");
                             selectedmr = dataTable1.Select($"id_st = '{id_stud}' AND date_m = '{i + 1}'");
@@ -177,7 +182,7 @@ namespace Jornal
 
             //string month = dt.ToString("MMMM", CultureInfo.GetCultureInfo("ru-RU"));
             this.comboBox1.Text = DateTime.Now.ToString("MMMM", CultureInfo.GetCultureInfo("ru-RU"));
-            if (User.Prava != 1)
+            if (User1.Prava != 1)
             {
                 //MessageBox.Show(User.Value);
                 //this.менюToolStripMenuItem.Visible = false;
@@ -186,7 +191,7 @@ namespace Jornal
                 this.учебаToolStripMenuItem.Visible = false;
                 this.comboBox3.Visible = false;
             }
-            if (User.Prava != 3)
+            if (User1.Prava != 3)
             {
                 SqlConnection conn = DBUtils.GetDBConnection();
                 conn.Open();
@@ -224,7 +229,7 @@ namespace Jornal
 
                 // Сочетать Command с Connection.
                 cmd1.Connection = conn1;
-                cmd1.CommandText = "SELECT users.fio_user, users.id_user FROM users LEFT JOIN teach_predmet ON users.id_user=teach_predmet.id_teach WHERE teach_predmet.id_predmet=@predm ORDER BY users.fio_user";
+                cmd1.CommandText = "SELECT users.fio_user, users.Id FROM users LEFT JOIN teach_predmet ON users.Id=teach_predmet.id_teach WHERE teach_predmet.id_predmet=@predm ORDER BY users.fio_user";
                 DataRow selectedDataRow = ((DataRowView)comboBox2.SelectedItem).Row;
                 int predId = Convert.ToInt32(selectedDataRow["Id_pr"]);
                 cmd1.Parameters.Add("@predm", SqlDbType.Int).Value = predId;
@@ -236,7 +241,7 @@ namespace Jornal
                 {
                     while (reader1.Read())
                     {
-                        int IdIndex = reader1.GetOrdinal("id_user");
+                        int IdIndex = reader1.GetOrdinal("Id");
                         int fioIndex = reader1.GetOrdinal("fio_user");
                         dataTable1.Rows.Add(reader1.GetInt32(IdIndex), reader1.GetString(fioIndex));
                     }
@@ -246,12 +251,12 @@ namespace Jornal
                 comboBox3.ValueMember = "Id";
                 //conn1.Close();
             }
-            if (User.Prava == 3)
+            if (User1.Prava == 3)
             {
                 comboBox2.Visible = false;
                 button1.Visible = false;
             }
-            if (User.Prava == 1)
+            if (User1.Prava == 1)
             {
                 button1.Visible = false;
             }
@@ -267,7 +272,7 @@ namespace Jornal
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (comboBox2.DataSource != null || User.Prava==3)
+            if (comboBox2.DataSource != null || User1.Prava==3)
             {
                 Refreshh(this);
             }
@@ -301,7 +306,7 @@ namespace Jornal
 
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (User.Value == 9)
+            if (User1.Value == 9)
             {
                 SqlConnection conn1 = DBUtils.GetDBConnection();
                 conn1.Open();
@@ -311,7 +316,7 @@ namespace Jornal
 
                 // Сочетать Command с Connection.
                 cmd1.Connection = conn1;
-                cmd1.CommandText = "SELECT users.fio_user, users.id_user FROM users LEFT JOIN teach_predmet ON users.id_user=teach_predmet.id_teach WHERE teach_predmet.id_predmet=@predm ORDER BY users.fio_user";
+                cmd1.CommandText = "SELECT users.fio_user, users.Id FROM users LEFT JOIN teach_predmet ON users.Id=teach_predmet.id_teach WHERE teach_predmet.id_predmet=@predm ORDER BY users.fio_user";
                 DataRow selectedDataRow = ((DataRowView)comboBox2.SelectedItem).Row;
                 int predId = Convert.ToInt32(selectedDataRow["Id_pr"]);
                 cmd1.Parameters.Add("@predm", SqlDbType.Int).Value = predId;
@@ -323,7 +328,7 @@ namespace Jornal
                 {
                     while (reader1.Read())
                     {
-                        int IdIndex = reader1.GetOrdinal("id_user");
+                        int IdIndex = reader1.GetOrdinal("Id");
                         int fioIndex = reader1.GetOrdinal("fio_user");
                         dataTable1.Rows.Add(reader1.GetInt32(IdIndex), reader1.GetString(fioIndex));
                     }
@@ -345,13 +350,17 @@ namespace Jornal
             DataRow selectedDataRow = ((DataRowView)comboBox2.SelectedItem).Row;
             int predId = Convert.ToInt32(selectedDataRow["Id_pr"]);
             string predmt = selectedDataRow["predmet"].ToString();
-            Form5 about = new Form5();
-            about.pr2 = predId;
-            about.npr2 = predmt;
-            about.ShowDialog();
-            //about.Show();
-            //Form2 f2 = new Form2();
-            //Enabled = false;
+            //Form5 about = new Form5();
+            //Form8 about = new Form8();
+            // about.pr2 = predId;
+            //about.npr2 = predmt;
+            //about.ShowDialog();
+
+            var wpfwindow = new Jornal.Window1(predId);
+            ElementHost.EnableModelessKeyboardInterop(wpfwindow);
+            wpfwindow.PredId = predId;
+            wpfwindow.Predmt = predmt;
+            wpfwindow.ShowDialog();
         }
 
         private void Form2_Activated(object sender, EventArgs e)
@@ -362,9 +371,21 @@ namespace Jornal
 
         private void пользавателиToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //Hide();
+            Hide();
             Form6 about = new Form6();
             about.ShowDialog();
+        }
+
+        private void среднийБалToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            Form7 about = new Form7();
+            about.ShowDialog();
+        }
+
+        private void среднийБал2ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            report1.Show();
         }
     }
 }

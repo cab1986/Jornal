@@ -48,7 +48,7 @@ namespace Jornal
 
             // Сочетать Command с Connection.
             cmd.Connection = conn;
-            cmd.CommandText = "SELECT id_user,prava FROM users WHERE log_in=@login AND pass=@pass";
+            cmd.CommandText = "SELECT Id,prava FROM users WHERE log_in=@login AND pass=@pass";
 
             cmd.Parameters.Add("@login", SqlDbType.VarChar).Value = this.textBox1.Text;
             cmd.Parameters.Add("@pass", SqlDbType.VarChar).Value = GetMd5Hash(this.textBox2.Text);
@@ -57,10 +57,10 @@ namespace Jornal
             {
                 while (reader.Read())
                 {
-                    int id_user = reader.GetOrdinal("id_user");
-                    User.Value = Convert.ToInt32(reader.GetValue(id_user));
+                    int Id = reader.GetOrdinal("Id");
+                    User1.Value = Convert.ToInt32(reader.GetValue(Id));
                     int prava = reader.GetOrdinal("prava");
-                    User.Prava = Convert.ToInt32(reader.GetValue(prava));
+                    User1.Prava = Convert.ToInt32(reader.GetValue(prava));
                 }
                 Hide();
                 Form2 about = new Form2();

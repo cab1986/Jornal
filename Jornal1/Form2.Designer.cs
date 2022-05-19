@@ -37,15 +37,15 @@
             this.пользавателиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.предметыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.учебаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.отчетToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.среднийБалToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.среднийБал2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.comboBox3 = new System.Windows.Forms.ComboBox();
             this.button1 = new System.Windows.Forms.Button();
             this.report1 = new FastReport.Report();
-            this.jornal_DBDataSet1 = new Jornal.Jornal_DBDataSet();
-            this.elementHost1 = new System.Windows.Forms.Integration.ElementHost();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.report1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.jornal_DBDataSet1)).BeginInit();
             this.SuspendLayout();
             // 
             // comboBox1
@@ -90,7 +90,8 @@
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.менюToolStripMenuItem});
+            this.менюToolStripMenuItem,
+            this.отчетToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1220, 24);
@@ -128,6 +129,29 @@
             this.учебаToolStripMenuItem.Text = "Учеба";
             this.учебаToolStripMenuItem.Click += new System.EventHandler(this.учебаToolStripMenuItem_Click);
             // 
+            // отчетToolStripMenuItem
+            // 
+            this.отчетToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.среднийБалToolStripMenuItem,
+            this.среднийБал2ToolStripMenuItem});
+            this.отчетToolStripMenuItem.Name = "отчетToolStripMenuItem";
+            this.отчетToolStripMenuItem.Size = new System.Drawing.Size(51, 20);
+            this.отчетToolStripMenuItem.Text = "Отчет";
+            // 
+            // среднийБалToolStripMenuItem
+            // 
+            this.среднийБалToolStripMenuItem.Name = "среднийБалToolStripMenuItem";
+            this.среднийБалToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
+            this.среднийБалToolStripMenuItem.Text = "Средний бал";
+            this.среднийБалToolStripMenuItem.Click += new System.EventHandler(this.среднийБалToolStripMenuItem_Click);
+            // 
+            // среднийБал2ToolStripMenuItem
+            // 
+            this.среднийБал2ToolStripMenuItem.Name = "среднийБал2ToolStripMenuItem";
+            this.среднийБал2ToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
+            this.среднийБал2ToolStripMenuItem.Text = "Средний бал2";
+            this.среднийБал2ToolStripMenuItem.Click += new System.EventHandler(this.среднийБал2ToolStripMenuItem_Click);
+            // 
             // comboBox3
             // 
             this.comboBox3.FormattingEnabled = true;
@@ -152,21 +176,6 @@
             this.report1.NeedRefresh = false;
             this.report1.ReportResourceString = resources.GetString("report1.ReportResourceString");
             this.report1.Tag = null;
-            this.report1.RegisterData(this.jornal_DBDataSet1, "jornal_DBDataSet1");
-            // 
-            // jornal_DBDataSet1
-            // 
-            this.jornal_DBDataSet1.DataSetName = "Jornal_DBDataSet";
-            this.jornal_DBDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // elementHost1
-            // 
-            this.elementHost1.Location = new System.Drawing.Point(0, 0);
-            this.elementHost1.Name = "elementHost1";
-            this.elementHost1.Size = new System.Drawing.Size(200, 100);
-            this.elementHost1.TabIndex = 0;
-            this.elementHost1.Text = "elementHost1";
-            this.elementHost1.Child = null;
             // 
             // Form2
             // 
@@ -189,7 +198,6 @@
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.report1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.jornal_DBDataSet1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -207,8 +215,9 @@
         private System.Windows.Forms.ComboBox comboBox3;
         private System.Windows.Forms.Button button1;
         public System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ToolStripMenuItem отчетToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem среднийБалToolStripMenuItem;
         private FastReport.Report report1;
-        private Jornal_DBDataSet jornal_DBDataSet1;
-        private System.Windows.Forms.Integration.ElementHost elementHost1;
+        private System.Windows.Forms.ToolStripMenuItem среднийБал2ToolStripMenuItem;
     }
 }

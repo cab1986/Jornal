@@ -38,7 +38,7 @@ namespace Jornal
             cmd.CommandText = sql;
 
             cmd.Parameters.Add("@id_predmet", SqlDbType.Int).Value = pr2;
-            cmd.Parameters.Add("@id_tech", SqlDbType.Int).Value = User.Value;
+            cmd.Parameters.Add("@id_tech", SqlDbType.Int).Value = User1.Value;
             cmd.Parameters.Add("@date_les", SqlDbType.Date).Value = dateTimePicker1.Value.Date;
             cmd.Parameters.Add("@userId", SqlDbType.Int).Value = stId;
 
@@ -59,9 +59,9 @@ namespace Jornal
             conn.Open();
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = conn;
-            cmd.CommandText = "SELECT t_st_pred.id_st, users.fio_user FROM t_st_pred JOIN users ON t_st_pred.id_st=users.id_user WHERE t_st_pred.id_pred=@id_pred AND t_st_pred.id_tch=@id_tch ORDER BY users.fio_user";
+            cmd.CommandText = "SELECT t_st_pred.id_st, users.fio_user FROM t_st_pred JOIN users ON t_st_pred.id_st=users.Id WHERE t_st_pred.id_pred=@id_pred AND t_st_pred.id_tch=@id_tch ORDER BY users.fio_user";
             cmd.Parameters.Add("@id_pred", SqlDbType.Int).Value = pr2;
-            cmd.Parameters.Add("@id_tch", SqlDbType.Int).Value = User.Value;
+            cmd.Parameters.Add("@id_tch", SqlDbType.Int).Value = User1.Value;
             DataTable dataTable = new DataTable("fio");
             dataTable.Columns.Add("id_st");
             dataTable.Columns.Add("Name");

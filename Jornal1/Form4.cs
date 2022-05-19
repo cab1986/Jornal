@@ -18,7 +18,7 @@ namespace Jornal
         public Form4()
         {
             InitializeComponent();
-        } 
+        }
         static void Refreshh(Form4 form)
         {
             form.listBox1.DataSource = null;
@@ -28,7 +28,7 @@ namespace Jornal
             conn.Open();
             SqlCommand cmd1 = new SqlCommand();
             cmd1.Connection = conn;
-            cmd1.CommandText = "SELECT predmet.predmet +', '+ users.fio_user as PredFio, t_st_pred.id_tsp FROM t_st_pred LEFT JOIN predmet ON t_st_pred.id_pred=predmet.id_predmet LEFT JOIN users ON t_st_pred.id_tch=users.id_user WHERE t_st_pred.id_st=@id_st ORDER BY predmet.predmet";
+            cmd1.CommandText = "SELECT predmet.predmet +', '+ users.fio_user as PredFio, t_st_pred.id_tsp FROM t_st_pred LEFT JOIN predmet ON t_st_pred.id_pred=predmet.id_predmet LEFT JOIN users ON t_st_pred.id_tch=users.Id WHERE t_st_pred.id_st=@id_st ORDER BY predmet.predmet";
             cmd1.Parameters.Add("@id_st", SqlDbType.Int).Value = userId;
             DataTable dataTable2 = new DataTable("t_st_pred");
             dataTable2.Columns.Add("id_tsp");
@@ -112,7 +112,7 @@ namespace Jornal
             {
                 while (reader.Read())
                 {
-                    int IdIndex = reader.GetOrdinal("id_user");
+                    int IdIndex = reader.GetOrdinal("Id");
                     int fioIndex = reader.GetOrdinal("fio_user");
                     dataTable.Rows.Add(reader.GetInt32(IdIndex), reader.GetString(fioIndex));
                 }
@@ -147,10 +147,10 @@ namespace Jornal
                 conn2.Open();
                 SqlCommand cmd3 = new SqlCommand();
                 cmd3.Connection = conn2;
-                cmd3.CommandText = "SELECT id_user,fio_user FROM users WHERE id_user IN(SELECT id_teach FROM teach_predmet WHERE id_predmet =@id_pred)  ORDER BY fio_user";
+                cmd3.CommandText = "SELECT Id,fio_user FROM users WHERE Id IN(SELECT id_teach FROM teach_predmet WHERE id_predmet =@id_pred)  ORDER BY fio_user";
                 cmd3.Parameters.Add("@id_pred", SqlDbType.Int).Value = predId;
                 DataTable dataTable3 = new DataTable("teachpred");
-                dataTable3.Columns.Add("id_user");
+                dataTable3.Columns.Add("Id");
                 dataTable3.Columns.Add("fio_user");
                 DbDataReader reader2 = cmd3.ExecuteReader();
                 //MessageBox.Show(this.comboBox1.SelectedText.ToString());
@@ -158,13 +158,13 @@ namespace Jornal
                 {
                     while (reader2.Read())
                     {
-                        int IdIndex = reader2.GetOrdinal("id_user");
+                        int IdIndex = reader2.GetOrdinal("Id");
                         int fio = reader2.GetOrdinal("fio_user");
                         dataTable3.Rows.Add(reader2.GetInt32(IdIndex), reader2.GetString(fio));
                     }
                     comboBox3.DataSource = dataTable3;
                     comboBox3.DisplayMember = "fio_user";
-                    comboBox3.ValueMember = "id_user";
+                    comboBox3.ValueMember = "Id";
                 }
             }
         }
@@ -176,7 +176,7 @@ namespace Jornal
             DataRow selectedDataRow1 = ((DataRowView)comboBox2.SelectedItem).Row;
             int predId = Convert.ToInt32(selectedDataRow1["id_predmet"]);
             DataRow selectedDataRow2 = ((DataRowView)comboBox3.SelectedItem).Row;
-            int teachId = Convert.ToInt32(selectedDataRow2["id_user"]);
+            int teachId = Convert.ToInt32(selectedDataRow2["Id"]);
             SqlConnection conn = DBUtils.GetDBConnection();
             conn.Open();
             string sql = "INSERT INTO t_st_pred(id_pred,id_tch,id_st) values (@id_predmet,@id_tch,@id_st)";

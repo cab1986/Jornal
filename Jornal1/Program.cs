@@ -10,6 +10,8 @@ using System.Text;
 using Tutorial.SqlConn;
 using System.Data.SqlClient;
 using System.Data.Common;
+using System.Data.Entity;
+
 namespace Jornal
 {
     internal static class Program
@@ -27,10 +29,12 @@ namespace Jornal
 
         
     }
-    static class User
+    static class User1
     {
         public static int Value { get; set; }
         public static int Prava { get; set; }
     }
+
+    
 
 }

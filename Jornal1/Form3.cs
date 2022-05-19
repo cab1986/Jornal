@@ -112,7 +112,7 @@ namespace Jornal
             {
                 while (reader.Read())
                 {
-                    int IdIndex = reader.GetOrdinal("id_user");
+                    int IdIndex = reader.GetOrdinal("Id");
                     int fioIndex = reader.GetOrdinal("fio_user");
                     dataTable.Rows.Add(reader.GetInt32(IdIndex), reader.GetString(fioIndex));
                 }
