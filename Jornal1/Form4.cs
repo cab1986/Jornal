@@ -18,7 +18,7 @@ namespace Jornal
         public Form4()
         {
             InitializeComponent();
-        }
+        } 
         static void Refreshh(Form4 form)
         {
             form.listBox1.DataSource = null;
