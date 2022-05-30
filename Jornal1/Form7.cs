@@ -32,7 +32,7 @@ namespace Jornal
 
             // Сочетать Command с Connection.
             cmd1.Connection = conn1;
-            cmd1.CommandText = "SELECT fio_user,ISNULL((SELECT ROUND(avg(CAST(mark.mark AS float)),2) FROM mark WHERE users.Id=mark.id_st AND date_m>=@dateb AND date_m<=@dateen),'0') Over_Mark FROM users WHERE prava = 3; ";
+            cmd1.CommandText = "SELECT fio_user, ROUND(avg(CAST(mark.mark AS float)), 2) Over_Mark FROM users JOIN mark ON users.Id = mark.id_st WHERE prava = 3 AND date_m>=@dateb AND date_m<=@dateen GROUP BY users.fio_user;";
             cmd1.Parameters.Add("@dateb", SqlDbType.Date).Value = dateTimePicker1.Value.ToShortDateString();
             cmd1.Parameters.Add("@dateen", SqlDbType.Date).Value = dateTimePicker2.Value.ToShortDateString();
             DataTable dataTable1 = new DataTable("Over_M");

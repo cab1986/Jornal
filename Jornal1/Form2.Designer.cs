@@ -141,14 +141,14 @@
             // среднийБалToolStripMenuItem
             // 
             this.среднийБалToolStripMenuItem.Name = "среднийБалToolStripMenuItem";
-            this.среднийБалToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
+            this.среднийБалToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.среднийБалToolStripMenuItem.Text = "Средний бал";
             this.среднийБалToolStripMenuItem.Click += new System.EventHandler(this.среднийБалToolStripMenuItem_Click);
             // 
             // среднийБал2ToolStripMenuItem
             // 
             this.среднийБал2ToolStripMenuItem.Name = "среднийБал2ToolStripMenuItem";
-            this.среднийБал2ToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
+            this.среднийБал2ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.среднийБал2ToolStripMenuItem.Text = "Средний бал2";
             this.среднийБал2ToolStripMenuItem.Click += new System.EventHandler(this.среднийБал2ToolStripMenuItem_Click);
             // 

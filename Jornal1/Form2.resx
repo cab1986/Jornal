@@ -125,7 +125,7 @@
   </metadata>
   <data name="report1.ReportResourceString" xml:space="preserve">
     <value>﻿&lt;?xml version="1.0" encoding="utf-8"?&gt;
-&lt;Report ScriptLanguage="CSharp" ReportInfo.Created="04/28/2022 15:53:32" ReportInfo.Modified="05/18/2022 15:34:56" ReportInfo.CreatorVersion="2022.2.7.0"&gt;
+&lt;Report ScriptLanguage="CSharp" ReportInfo.Created="04/28/2022 15:53:32" ReportInfo.Modified="05/30/2022 12:37:21" ReportInfo.CreatorVersion="2022.2.7.0"&gt;
   &lt;ScriptText&gt;using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -153,8 +153,8 @@ namespace FastReport
 }
 &lt;/ScriptText&gt;
   &lt;Dictionary&gt;
-    &lt;MsSqlDataConnection Name="Connection" ConnectionString="rijcmlqN05pCO2qPWeLcb0O3lfSJ/Kz6ORHa1CzUrJJayzKDfi05KIz9SVUvO7moM9/wrAFVFLfeWv7eIkBar+Egi/vERpZD5xRvGYUcvz8NfxVm+6kjU/wtPH3nQLAM6DHGyZA7rlKCSieMY5uQo5g6OgsssQVKUyANfoeh68gzaYRqqKixaKygPmpamBFoss32oX/o/VI4fUZ9bve2eBiCjZFCDDTI17R4I3PzU4vJWkxkIY="&gt;
-      &lt;TableDataSource Name="Table" DataType="System.Int32" Enabled="true" SelectCommand="SELECT fio_user, ISNULL((SELECT ROUND(avg(CAST(mark.mark AS float)),2) FROM mark WHERE users.Id=mark.id_st AND  date_m&amp;gt;=@Parameter AND date_m&amp;lt;=@Parameter1),'0') Средняя_оценка&amp;#13;&amp;#10;FROM users WHERE prava=3"&gt;
+    &lt;MsSqlDataConnection Name="Connection" ConnectionString="rijcmlqN05pCO2qPWeLcb0O3lfSJ/Kz6ORHa1CzUrJJayzKDfi05KIz9SVUvO7moM9/wrAFVFLfeWv7eIkBar+Egi/vERpZD5xRvGYUcvz8NfxVm+6kjU/wtPH3nQLAM6DHGyZA7rlKCSieMY5uQo5g6OgsssQVKUyANfoeh68gzaYRqqKixaKygPmpamBFoss32oX/o/VI4fUZ9bve2eBiCjZFCDS8jgQgyuJLv+KiWHEwFzI="&gt;
+      &lt;TableDataSource Name="Table" DataType="System.Int32" Enabled="true" SelectCommand="SELECT fio_user, ROUND(avg(CAST(mark.mark AS float)),2) Средняя_оценка FROM users JOIN mark ON users.Id=mark.id_st WHERE users.prava=3 AND  date_m&amp;gt;=@Parameter AND date_m&amp;lt;=@Parameter1 GROUP BY users.fio_user"&gt;
         &lt;Column Name="fio_user" DataType="System.String"/&gt;
         &lt;Column Name="Средняя_оценка" DataType="System.Double"/&gt;
         &lt;CommandParameter Name="Parameter" DataType="15" Expression="[Parameter]" DefaultValue="01.01.2022"/&gt;

@@ -17,13 +17,15 @@ namespace Jornal
         public int IdSt { get; set; }
         public int IdTch { get; set; }
         public int IdPrd { get; set; }
+        public int Mark { get; set; }
         public DateTime DateLM { get; set; }
 
-        public Lesson_Mark(int idst, int idtch, int idprd, DateTime datelm)
+        public Lesson_Mark(int idst, int idtch, int idprd, int marrk, DateTime datelm)
         {
             this.IdSt = idst;
             this.IdTch = idtch;
             this.IdPrd = idprd;
+            this.Mark = marrk;
             this.DateLM = datelm;
         }
     }
